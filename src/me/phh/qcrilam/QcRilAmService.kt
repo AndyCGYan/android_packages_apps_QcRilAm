@@ -111,7 +111,7 @@ class QcRilAmService : Service() {
     override fun onBind(intent: Intent?) = null
 
     override fun onCreate() {
-        val simCount = getSystemService(SubscriptionManager::class.java).getActiveSubscriptionInfoCountMax()
+        val simCount = getSystemService(SubscriptionManager::class.java)?.getActiveSubscriptionInfoCountMax() ?:2
         Log.i(TAG, "Device has $simCount sim slots")
         val audioManager = getSystemService(AudioManager::class.java)
         if (audioManager == null) {
