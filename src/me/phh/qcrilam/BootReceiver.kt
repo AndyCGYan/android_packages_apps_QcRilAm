@@ -23,9 +23,12 @@ package me.phh.qcrilam
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.UserManager
 
 class BootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
-        context.startService(Intent(context, QcRilAmService::class.java))
+        if (UserManager.get(context).isSystemUser()){
+            context.startService(Intent(context, QcRilAmService::class.java))
+        }
     }
 }
